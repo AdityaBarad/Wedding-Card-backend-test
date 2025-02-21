@@ -11,6 +11,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+console.log("Supabase URL:", process.env.VITE_SUPABASE_URL);
+console.log("Supabase Key:", process.env.VITE_SUPABASE_ANON_KEY);
+
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 const SUPABASE_KEY = process.env.VITE_SUPABASE_ANON_KEY;
 const BUCKET_NAME = "cards";
@@ -22,6 +25,8 @@ app.get("/", (req, res) => {
   });
 
 app.post("/generate-invitations", async (req, res) => {
+    console.log("Supabase URL:", process.env.VITE_SUPABASE_URL);
+console.log("Supabase Key:", process.env.VITE_SUPABASE_ANON_KEY);
     const browser = await puppeteer.launch({
         args: [
           "--disable-setuid-sandbox",
@@ -34,6 +39,8 @@ app.post("/generate-invitations", async (req, res) => {
             ? process.env.PUPPETEER_EXECUTABLE_PATH
             : puppeteer.executablePath(),
       });
+      console.log("Supabase URL:", process.env.VITE_SUPABASE_URL);
+console.log("Supabase Key:", process.env.VITE_SUPABASE_ANON_KEY);
   const { projectId, guestName } = req.body;
   console.log("Received projectId:", projectId, "Guest Name:", guestName);
 
